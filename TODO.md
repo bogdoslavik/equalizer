@@ -3,6 +3,7 @@
 - collect factories for networks
 - fetch pairs from all factories
 - filter pairs (has on 2 and more networks)
+- create tokens map
 - get balances for tokens
 - get reserves for pairs
 - find profitable swaps
