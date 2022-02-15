@@ -12,7 +12,7 @@ import "./interfaces/IERC20Name.sol";
 
 import "hardhat/console.sol";
 
-contract Equalizer is ContractOwnable {
+contract Skimmer is ContractOwnable {
 
     struct LpData {
         address lp;
@@ -164,16 +164,6 @@ contract Equalizer is ContractOwnable {
 
 
     // ********************* OWNER ACTIONS **********************
-
-   /* function exchange(address lp, address tokenIn, uint amountIn)
-    external onlyOwner {
-        revert('EQ: Not implemented');
-        // TODO
-        // transfer to pair
-        // get reserves
-        // calc amounts
-        // swap
-    }*/
 
     function skimPairs(address[] memory pairs)
     external {

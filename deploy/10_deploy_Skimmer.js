@@ -1,14 +1,13 @@
 module.exports = async ({getNamedAccounts, deployments}) => {
     const {deploy} = deployments;
     const {deployer} = await getNamedAccounts();
-    await deploy('Equalizer', {
+    await deploy('Skimmer', {
         from: deployer,
         args: [],
-        log: true,
-        proxy: {
-            methodName: 'initialize',
-        },
+        // proxy: {
+        //     methodName: 'initialize',
+        // },
         log: true,
     });
 };
-module.exports.tags = ['Equalizer'];
+module.exports.tags = ['Skimmer'];

@@ -12,6 +12,7 @@
     "compile": "npx hardhat compile",
     "test": "npm run build && npx hardhat test",
     "test-matic": "npx hardhat test --network matic",
+    "deploy-matic": "npm run build && npx hardhat deploy --network matic",
     "coverage": "npm run build && npx cross-env NODE_OPTIONS=\"--max_old_space_size=8192\" hardhat coverage --temp artifacts --max-memory 4096",
     "slither": "npm run build && slither .",
     "lint": "tslint -p tsconfig.json",
