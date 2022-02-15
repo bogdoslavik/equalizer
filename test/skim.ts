@@ -4,6 +4,8 @@ import { MaticAddresses } from "../scripts/addresses/MaticAddresses"
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { Equalizer } from "../typechain";
 
+const EQUALIZER_MATIC = '0x6dF112C6C67373e6d97CC1b45D39e6B7dE2BB381';
+
 let signer: SignerWithAddress;
 let equalizer: Equalizer;
 
@@ -14,10 +16,14 @@ describe("Skimmer", function () {
 
     if (network.name === 'matic') {
 
+      equalizer = await ethers.getContractAt(
+          "Equalizer", EQUALIZER_MATIC, signer
+      ) as Equalizer;
+
     } else if (network.name === 'hardhat') {
 
       const Equalizer = await ethers.getContractFactory("Equalizer");
-      equalizer = await Equalizer.deploy(MaticAddresses.WMATIC_TOKEN) as Equalizer;
+      equalizer = await Equalizer.deploy() as Equalizer;
       await equalizer.deployed();
 
     } else console.error('Unsupported network', network.name)
@@ -26,7 +32,7 @@ describe("Skimmer", function () {
 
   it("Should return pairs for skim", async function () {
 
-    const batch = 10;
+    const batch = 100;
     const factory = MaticAddresses.QUICK_FACTORY;
 
     const allPairsLengthBN = await equalizer.allPairsLengthUniswapV2(factory);

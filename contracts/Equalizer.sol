@@ -104,11 +104,8 @@ contract Equalizer is ContractOwnable, Initializable {
             uint cream1 = balance1 > reserve1 ? balance1 - reserve1 : 0;
 
             if (cream0 == 0 && cream1 == 0) {
-                console.log(p, 'no cream');
                 continue;
             }
-
-            console.log(p, cream0, cream1);
 
             pairs[b++] = SkimData({
                 lp:address(pair),
