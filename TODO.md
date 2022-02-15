@@ -1,9 +1,7 @@
 # TODO
 
-- collect factories for networks
-- fetch pairs from all factories
-- filter pairs (has on 2 and more networks)
-- create tokens map
+# EQ
+- create tokens map https://github-wiki-see.page/m/anyswap/CrossChain-Bridge/wiki/Bridge-api-for-frontend
 - get balances for tokens
 - get reserves for pairs
 - find profitable swaps
