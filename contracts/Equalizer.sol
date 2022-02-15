@@ -49,46 +49,6 @@ contract Equalizer is ContractOwnable {
         allPairsLength = factory.allPairsLength();
     }
 
-    function scanSkimsUniswapV2(
-        address factoryAddress,
-        uint skip,
-        uint count,
-        uint minimum,
-        uint16[] memory exceptions)
-    external view returns (address[] memory foundPairs) {
-        uint maxPair = Math.min(IUniswapV2Factory(factoryAddress).allPairsLength(), skip + count);
-        address[] memory pairs = new address[](maxPair - skip);
-
-        uint b = 0;
-        for (uint p = skip; p < maxPair; p++) {
-            uint elen = exceptions.length;
-            uint e = 0;
-            for (e = 0; e < elen; e++)
-                if (exceptions[e] == p) break;
-            if (e<elen) continue;
-
-            IUniswapV2Pair pair = IUniswapV2Pair(IUniswapV2Factory(factoryAddress).allPairs(p));
-
-            (uint reserve0, uint reserve1, ) = pair.getReserves();
-
-            uint balance0 = IERC20(pair.token0()).balanceOf(address(pair));
-            uint balance1 = IERC20(pair.token1()).balanceOf(address(pair));
-
-            uint cream0 = balance0 > reserve0 ? balance0 - reserve0 : 0;
-            uint cream1 = balance1 > reserve1 ? balance1 - reserve1 : 0;
-
-            if (   (cream0) < minimum
-                && (cream1) < minimum) {
-                continue;
-            }
-
-            pairs[b++] = address(pair);
-        }
-        foundPairs = new address[](b);
-        for (uint i = 0; i < b; i++)
-            foundPairs[i] = pairs[i];
-    }
-
     function loadPairsUniswapV2(address factoryAddress, uint skip, uint count )
     external view returns (LpData[] memory pairs) {
         IUniswapV2Factory factory = IUniswapV2Factory(factoryAddress);
@@ -174,15 +134,6 @@ contract Equalizer is ContractOwnable {
         // calc amounts
         // swap
     }*/
-
-    function skimPairs(address[] memory pairs)
-    external {
-        uint len = pairs.length;
-        address owner = getOwner();
-        for (uint p = 0; p < len; p++) {
-            IUniswapV2Pair(pairs[p]).skim(owner);
-        }
-    }
 
     function setNetworkToken(address _networkToken)
     external onlyOwner {
