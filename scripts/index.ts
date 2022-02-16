@@ -9,6 +9,9 @@ import fetch from 'node-fetch';
 }*/
 
 interface String2String { [key: string]: string }
+interface TokenMap {[key: string]: String2String};
+interface TokensByChainId {[key: string]:[string]}
+
 
 const chainIds: String2String = {
     // ethereum:'1',
@@ -30,8 +33,8 @@ console.log('chains', chains);
 const chainNames = chains.map( name => ({filed: chainIds[name], value: name}));
 console.log('chainNames', chainNames);
 
-interface TokenMap {[key: string]: String2String};
 let tokenMap: TokenMap = {}
+let tokensByChainId: TokensByChainId = {}
 
 async function loadBridgeInfo(chain: string) {
     const url = 'https://bridgeapi.anyswap.exchange/v2/serverInfo/';
@@ -78,9 +81,23 @@ function filterTokenMap(minTwins: number) {
     return map;
 }
 
+function groupTokensByChainId(map: TokenMap) {
+    const group: TokensByChainId = {}
+    for (const token of Object.keys(map)) {
+        const twins = map[token];
+        for (const id of Object.keys(twins)) {
+            if (!group[id]) group[id] = [twins[id]]
+            else group[id].push(twins[id]);
+        }
+    }
+    return group;
+}
+
 async function init() {
     await loadBridgesInfo();
     tokenMap = filterTokenMap(4)
+    const tokensByChainId = groupTokensByChainId(tokenMap)
+    console.log('tokensByChainId', tokensByChainId);
 }
 
 async function main() {
