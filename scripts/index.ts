@@ -1,4 +1,6 @@
 import fetch from 'node-fetch';
+import { MaticAddresses } from './addresses/MaticAddresses'
+import { FtmAddresses } from './addresses/FtmAddresses'
 
 // import { Equalizer } from "../typechain";
 
@@ -25,6 +27,21 @@ const chainIds: String2String = {
     // bitocin	:'BTC',
     // litecoin:'LTC',
     // blocknet:'BLOCK',
+}
+
+const factories: String2String = {
+    137: MaticAddresses.QUICK_FACTORY,
+    250: FtmAddresses.SPOOKY_SWAP_FACTORY,
+    56:  '0xca143ce32fe78f1f7019d7d551a6402fc5350c73', // https://bscscan.com/address/0xca143ce32fe78f1f7019d7d551a6402fc5350c73
+    // 43114: '', // TODO
+}
+
+
+const USDC: String2String = {
+    137:   MaticAddresses.USDC_TOKEN,
+    250:   FtmAddresses.USDC_TOKEN,
+    56:    '0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d',    // https://www.bscscan.com/token/0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d
+    43114: '0xA7D7079b0FEaD91F3e65f86E8915Cb59c1a4C664', // https://avascan.info/blockchain/c/address/0xA7D7079b0FEaD91F3e65f86E8915Cb59c1a4C664/token
 }
 
 const chains = Object.keys(chainIds);

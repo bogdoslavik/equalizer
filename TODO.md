@@ -1,7 +1,9 @@
 # TODO
-- +
+- best DEXes on BSC: Pancake, AVAX: Pangolin, ParaSwap, Partyswap, Sushi, TraderJoe
+- find pairs for tokens / base token 
 - get balances for tokens
 - get reserves for pairs
+- 
 - find profitable swaps
 - if swap have balance 
   - do real swap
@@ -14,6 +16,12 @@
 - check network token balance 
   - notify
   - change some extra tokens to network token
+
+# Biggest DEXes
+- Matic:  QuickSwap   factory:
+- Fantom: SpookySwap  factory:
+- BSC:    ?           factory:
+- Avax:   ?           factory:
 
 
 # Links
