@@ -7,6 +7,7 @@
     "test": "test"
   },
   "scripts": {
+    "ts": "npx ts-node",
     "build": "npm run clean && npm run compile",
     "clean": "npx hardhat clean",
     "compile": "npx hardhat compile",

@@ -1,7 +1,8 @@
 # TODO
 
 # EQ
-- create tokens map https://github-wiki-see.page/m/anyswap/CrossChain-Bridge/wiki/Bridge-api-for-frontend
+- create tokens map 
+- https://github-wiki-see.page/m/anyswap/CrossChain-Bridge/wiki/Bridge-api-for-frontend
 - get balances for tokens
 - get reserves for pairs
 - find profitable swaps
