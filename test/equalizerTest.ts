@@ -7,7 +7,7 @@ import { Equalizer } from "../typechain";
 const EQUALIZER_MATIC = '0x26359EE24bE2A54E799e4D90a477fa8536E92FED';
 
 let signer: SignerWithAddress;
-let equalizer: Equalizer;
+let equalizerTest: Equalizer;
 
 describe("Equalizer", function () {
   before(async function () {
@@ -16,15 +16,15 @@ describe("Equalizer", function () {
 
     if (network.name === 'matic') {
 
-      equalizer = await ethers.getContractAt(
+      equalizerTest = await ethers.getContractAt(
           "Equalizer", EQUALIZER_MATIC, signer
       ) as Equalizer;
 
     } else if (network.name === 'hardhat') {
 
       const EqualizerFactory = await ethers.getContractFactory("Equalizer");
-      equalizer = await EqualizerFactory.deploy() as Equalizer;
-      await equalizer.deployed();
+      equalizerTest = await EqualizerFactory.deploy() as Equalizer;
+      await equalizerTest.deployed();
       console.log('Contract deployed');
 
     } else console.error('Unsupported network', network.name)
@@ -39,9 +39,9 @@ describe("Equalizer", function () {
     let batch = 100;
     const ex = [];
 
-    const owner = await equalizer.getOwner();
+    const owner = await equalizerTest.getOwner();
     console.log('owner', owner);
-    const allPairsLength = (await equalizer.allPairsLengthUniswapV2(factory)).toNumber();
+    const allPairsLength = (await equalizerTest.allPairsLengthUniswapV2(factory)).toNumber();
     console.log('allPairsLength', allPairsLength);
 
   });

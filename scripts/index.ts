@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import { MaticAddresses } from './addresses/MaticAddresses'
 import { FtmAddresses } from './addresses/FtmAddresses'
+import {chainIds, String2String} from "./constants";
 
 // import { Equalizer } from "../typechain";
 
@@ -10,24 +11,8 @@ import { FtmAddresses } from './addresses/FtmAddresses'
     bsc   : '',
 }*/
 
-interface String2String { [key: string]: string }
 interface TokenMap {[key: string]: String2String};
 interface TokensByChainId {[key: string]:[string]}
-
-
-const chainIds: String2String = {
-    // ethereum:'1',
-    bsc     :'56',
-    // xdai	:'100',         // https://www.xdaichain.com/
-    // heco	:'128',         // https://docs.hecochain.com/#/mainnet
-    matic	:'137',
-    fantom	:'250',
-    // fusion	:'32659',   // https://fusiondev.gitbook.io/fusion/build/quick-links
-    avax	:'43114',       // https://docs.avax.network/
-    // bitocin	:'BTC',
-    // litecoin:'LTC',
-    // blocknet:'BLOCK',
-}
 
 const factories: String2String = {
     137: MaticAddresses.QUICK_FACTORY,

@@ -1,19 +1,19 @@
-type address = string;
+export const DEFAULT_DEX_TIMEOUT = 10 * 1000;
 
-interface IQuote {
-  body: any;
+export interface IQuote {
+  data: any;
   amountOut: bigint;
   estimatedGas: bigint;
 }
 
-interface IQuoteRequest {
-  chainId: number,
-  tokenIn: address,
-  tokenOut: address,
-  amountIn: bigint
+export interface IQuoteRequest {
+  chainId: string,
+  fromTokenAddress: string,
+  toTokenAddress: string,
+  amount: string
 }
 
-abstract class DexBase {
-  abstract qoute(request: IQuoteRequest): IQuote;
-  abstract swap(request: IQuoteRequest, fromAddress: address, slippage: number): string;
+export abstract class DexBase {
+  abstract quote(request: IQuoteRequest): Promise<IQuote>;
+  abstract swap(request: IQuoteRequest, fromAddress: string, slippage: number): Promise<string>;
 }
